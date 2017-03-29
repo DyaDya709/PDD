@@ -10,7 +10,7 @@ import Foundation
 
 class DataLoad {
     
-    func dataLoad(fileName:String)->[QuestionModel] {
+    static func dataLoad(fileName:String)->[QuestionModel] {
         // найдем путь к искомому файлу
         let pathToFile = Bundle.main.path(forResource: fileName, ofType: "json")!
         
@@ -29,10 +29,35 @@ class DataLoad {
             fatalError("не форматит сегодня")
         }
         //почему криво инициализируется( через массив)
-        let result = [QuestionModel]()
+        //!!!!!!Пока не понятно что нам нужно на выходе, то ли массив билетов, то ли просто билет, поэтому строку коментим, временно!!!!!!!!!
+        var result = [QuestionModel]()
+        var tranzit = QuestionModel()
+        for array in arrayOfdata {
+            for _ in result {
+                guard let biletNumber = array["biletNumber"] as? Int ?? nil,
+                    let questNumber = array["questNumber"] as? Int ?? nil,
+                    let quest = array["quest"] as? String ?? nil,
+                    let answers = array["v"] as? String ?? nil,
+                    let correctAnswer = array["otvet"] as? Int ?? nil,
+                    let comment = array["comments"] as? String ?? nil,
+                    let realUrl = array["realUrl"] as? String ?? nil
+                    else {
+                        break
+                }
+                tranzit.biletNumber = biletNumber
+                tranzit.questNumber = questNumber
+                tranzit.quest = quest
+                tranzit.answers = [answers]
+                tranzit.correctAnswer = correctAnswer
+                tranzit.comment = comment
+                tranzit.realUrl = realUrl
+            
+            }
+        result.append(tranzit)
+        }
+
         
-        
-        return []
+        return result
         
         
     }
@@ -48,11 +73,11 @@ class DataLoad {
 //        for element in result {
 //            var tranzit = element
 //            guard let answer = ["v"]
-//                
+//
 //                else {
-//                    
+//
 //            }
-//            
+//
 //        }
 //}
 
