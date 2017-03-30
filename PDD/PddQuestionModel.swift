@@ -21,16 +21,22 @@ struct QuestionModel {
     var comment:String?
     var realUrl:String?
     var image:UIImage?{
-        //]проверяем соотвествует ли в realUrl тип данных соотвествующий типу данных URL
-        let url = URL(string: realUrl!)
+        var myUrl = URL(string:"http://400km.ru/images_b_2013/NoPicture.png")!
+        if realUrl?.isEmpty == false {
+            myUrl = realUrl!
+        }
+        else { //проверяем соотвествует ли в realUrl тип данных соотвествующий типу данных URL
+            myUrl = URL(string: realUrl!)
+        }
         //проверяем можно ли получить биты и байты сырой информации по url
-        guard let data = try? Data(contentsOf: url!) else {
+        guard let data = try? Data(contentsOf: myUrl!) else {
             return nil
         }
+        
         return UIImage(data: data)
     }
     
-   
+    
 }
 
 

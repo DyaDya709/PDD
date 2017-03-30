@@ -36,7 +36,20 @@ class DataLoad {
             let biletNumber = array["biletNumber"] as? Int ?? nil
             let questNumber = array["questNumber"] as? Int ?? nil
             let quest = array["quest"] as? String ?? nil
-            let answers = array["v"] as? String ?? ""
+            var answers = [String]()
+            
+                if let value = array["v"] as? [Any]  {
+                    for element in value {
+                        if let x = element as? String {
+                            
+                            answers.append(x)
+                            
+                        }
+                        
+                    }
+                }
+            
+            
             let correctAnswer = array["otvet"] as? Int ?? nil
             let comment = array["comments"] as? String ?? nil
             let realUrl = array["realUrl"] as? String ?? nil
@@ -44,7 +57,7 @@ class DataLoad {
             tranzit.biletNumber = biletNumber
             tranzit.questNumber = questNumber
             tranzit.quest = quest
-            tranzit.answers = [answers]
+            tranzit.answers = answers
             tranzit.correctAnswer = correctAnswer
             tranzit.comment = comment
             tranzit.realUrl = realUrl
