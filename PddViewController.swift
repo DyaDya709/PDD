@@ -18,10 +18,12 @@ class PddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tranzit =  DataLoad.dataLoad(fileName: "quiestions1-10")
+        let tranzit =  DataLoad.dataLoad(fileName: "b2")
         for element in tranzit {
-            questionModel = element
             self.question.text = element.quest
+        self.comment.text = element.comment
+        self.title = String(element.biletNumber!)
+        
         }
         // Do any additional setup after loading the view.
     }

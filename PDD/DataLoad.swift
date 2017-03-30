@@ -33,61 +33,37 @@ class DataLoad {
         var result = [QuestionModel]()
         var tranzit = QuestionModel()
         for array in arrayOfdata {
-            for _ in result {
-                guard let biletNumber = array["biletNumber"] as? Int ?? nil,
-                    let questNumber = array["questNumber"] as? Int ?? nil,
-                    let quest = array["quest"] as? String ?? nil,
-                    let answers = array["v"] as? String ?? nil,
-                    let correctAnswer = array["otvet"] as? Int ?? nil,
-                    let comment = array["comments"] as? String ?? nil,
-                    let realUrl = array["realUrl"] as? String ?? nil
-                    else {
-                        break
-                }
-                tranzit.biletNumber = biletNumber
-                tranzit.questNumber = questNumber
-                tranzit.quest = quest
-                tranzit.answers = [answers]
-                tranzit.correctAnswer = correctAnswer
-                tranzit.comment = comment
-                tranzit.realUrl = realUrl
+            let biletNumber = array["biletNumber"] as? Int ?? nil
+            let questNumber = array["questNumber"] as? Int ?? nil
+            let quest = array["quest"] as? String ?? nil
+            let answers = array["v"] as? String ?? ""
+            let correctAnswer = array["otvet"] as? Int ?? nil
+            let comment = array["comments"] as? String ?? nil
+            let realUrl = array["realUrl"] as? String ?? nil
             
-            }
-        result.append(tranzit)
+            tranzit.biletNumber = biletNumber
+            tranzit.questNumber = questNumber
+            tranzit.quest = quest
+            tranzit.answers = [answers]
+            tranzit.correctAnswer = correctAnswer
+            tranzit.comment = comment
+            tranzit.realUrl = realUrl
+            result.append(tranzit)
         }
-
-        
         return result
-        
         
     }
     
     
-    
-    
-    
 }
 
-//for array in arrayOfdata {
-//    for (key,value) in array{
-//        for element in result {
-//            var tranzit = element
-//            guard let answer = ["v"]
-//
-//                else {
-//
-//            }
-//
-//        }
-//}
 
-//tranzit.answers = ["v"],
-//tranzit.biletNumber = Int("biletNumber")!,
-//tranzit.comment = "comment",
-//tranzit.correctAnswer = Int("otvet")!,
-//tranzit.quest = "quest",
-//tranzit.questNumber = Int("questNumber")!
-//else {
-//    fatalError()
-//
-//
+
+
+
+
+
+
+
+
+
